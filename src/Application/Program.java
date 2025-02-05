@@ -1,26 +1,21 @@
 package Application;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class Program {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-        String path = "/home/janiel-marques/Downloads/Casas Renome.txt";
+        String[] lines = new String[] { "Good morning, afternoon, night"};
+        String path = "/home/janiel-marques/Downloads/teste.txt";
 
-        try (BufferedReader br = new BufferedReader(new FileReader(path))){
-            String line = br.readLine();
-
-            while (line != null) {
-                System.out.println(line);
-                line = br.readLine();
-
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path,true))){
+            for (String line: lines) {
+                bw.write(line);
+                bw.newLine();
             }
         }
-        catch (
-                IOException e) {
-            System.out.println("Erroe: " + e.getMessage());
+        catch (IOException e){
+            e.printStackTrace();
         }
     }
 }
