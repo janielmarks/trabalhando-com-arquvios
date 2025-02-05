@@ -8,13 +8,8 @@ public class Program {
     public static void main(String[] args) {
 
         String path = "/home/janiel-marques/Downloads/Casas Renome.txt";
-        FileReader fr = null;
-        BufferedReader br = null;
 
-        try {
-            fr = new FileReader(path);
-            br = new BufferedReader(fr);
-
+        try (BufferedReader br = new BufferedReader(new FileReader(path))){
             String line = br.readLine();
 
             while (line != null) {
@@ -27,20 +22,6 @@ public class Program {
                 IOException e) {
             System.out.println("Erroe: " + e.getMessage());
         }
-        finally {
-            try {
-                if (br != null) {
-                    br.close();
-                }
-                if (fr != null){
-                    fr.close();
-                }
-            }
-            catch (IOException e){
-                e.printStackTrace();
-            }
-        }
-
     }
 }
 
